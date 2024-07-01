@@ -9,7 +9,7 @@ OPENAI_API_URL = os.getenv('https://ldtest.openai.azure.com/openai/deployments/g
 
 @app.route('/api/messages', methods=['POST'])
 def get_openai_response():
-    user_message = request.json.get('message')
+user_message = request.json.get('message')
     response = requests.post(
         OPENAI_API_URL,
         headers={
