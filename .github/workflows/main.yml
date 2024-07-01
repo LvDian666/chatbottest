@@ -1,11 +1,11 @@
+import os
 from flask import Flask, request, jsonify
 import requests
-import os
 
 app = Flask(__name__)
 
-OPENAI_API_KEY = os.getenv('0a63583019b44e6d8b2cd5369cd6deee')
-OPENAI_API_URL = os.getenv('https://ldtest.openai.azure.com/openai/deployments/gpt-4o')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+OPENAI_API_URL = os.getenv('OPENAI_API_URL')
 
 @app.route('/api/messages', methods=['POST'])
 def get_openai_response():
@@ -27,4 +27,3 @@ def get_openai_response():
 
 if __name__ == '__main__':
     app.run(port=os.getenv('PORT', 5000))
-
