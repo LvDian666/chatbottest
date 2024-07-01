@@ -8,8 +8,8 @@ OPENAI_API_KEY = os.getenv('0a63583019b44e6d8b2cd5369cd6deee')
 OPENAI_API_URL = os.getenv('https://ldtest.openai.azure.com/openai/deployments/gpt-4o')
 
 @app.route('/api/messages', methods=['POST'])
-def get_openai_response():
-user_message = request.json.get('message')
+    def get_openai_response():
+    user_message = request.json.get('message')
     response = requests.post(
         OPENAI_API_URL,
         headers={
