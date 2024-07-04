@@ -4,10 +4,10 @@ import requests
 
 app = Flask(__name__)
 
-OPENAI_API_KEY = os.getenv('19dadd996aea4f3ab3baa3c780670166')
-OPENAI_API_URL = os.getenv('https://ld-testus2.openai.azure.com/openai/deployments/gpt-4o')
-MICROSOFT_APP_ID = os.getenv('f125ac87-7698-48d6-a60b-b8e61ea5bdd1')
-MICROSOFT_APP_PASSWORD = os.getenv('41U8Q~1LndyLHh5HB7ZIa1yQEWkXoG663JbZRaxs')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+OPENAI_API_URL = os.getenv('OPENAI_API_URL')
+MICROSOFT_APP_ID = os.getenv('MICROSOFT_APP_ID')
+MICROSOFT_APP_PASSWORD = os.getenv('MICROSOFT_APP_PASSWORD')
 
 # Bot Framework authentication
 from botbuilder.core import BotFrameworkAdapter, BotFrameworkAdapterSettings, TurnContext
