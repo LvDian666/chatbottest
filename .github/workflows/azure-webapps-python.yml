@@ -31,10 +31,13 @@ jobs:
           source venv/bin/activate
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install pytest  # Install pytest here
 
       - name: Run tests
-        run: pytest  # Assuming you have tests configured with pytest
+        run: |
+          pytest  # Run pytest tests here
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
