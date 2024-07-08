@@ -2,6 +2,10 @@ import os
 from flask import Flask, request, jsonify
 import requests
 import asyncio
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
 
 app = Flask(__name__)
 
