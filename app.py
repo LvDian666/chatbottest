@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 import requests
+import asyncio
 
 app = Flask(__name__)
 
@@ -18,11 +19,10 @@ adapter = BotFrameworkAdapter(settings)
 
 @app.route('/api/messages', methods=['POST'])
 def messages():
-    if 'application/json' in request.headers['Content-Type']:
-        json_message = request.json
-    else:
+    if 'application/json' not in request.headers['Content-Type']:
         return jsonify({'error': 'Invalid Content-Type'})
 
+    json_message = request.json
     activity = Activity().deserialize(json_message)
 
     async def aux_func(turn_context: TurnContext):
@@ -41,7 +41,11 @@ def messages():
         bot_response = openai_response.json()['choices'][0]['text'].strip()
         await turn_context.send_activity(bot_response)
 
-    task = adapter.process_activity(activity, "", aux_func)
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    task = loop.create_task(adapter.process_activity(activity, "", aux_func))
+    loop.run_until_complete(task)
+
     return jsonify({'response': 'OK'})
 
 if __name__ == '__main__':
