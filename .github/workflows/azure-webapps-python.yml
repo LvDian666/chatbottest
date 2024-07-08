@@ -32,6 +32,7 @@ jobs:
 
       - name: Run tests
         run: |
+          source venv/bin/activate
           pytest  # 运行 pytest 测试
 
       - name: Deploy to Azure Web App
